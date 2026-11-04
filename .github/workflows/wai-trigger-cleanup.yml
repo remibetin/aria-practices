@@ -30,7 +30,7 @@ jobs:
         run: |
           node scripts/wai-trigger-cleanup.js
         env:
-          GH_TOKEN: ${{ secrets.W3CGRUNTBOT_TOKEN }}
+          GH_TOKEN: ${{ secrets.WAI_TOKEN }}
           OWNER: ${{ github.repository_owner }}
           # reference github.event.ref for branch deletion
           APG_BRANCH: ${{ github.event.ref }}
@@ -53,7 +53,7 @@ jobs:
         run: |
           node scripts/wai-trigger-cleanup.js
         env:
-          GH_TOKEN: ${{ secrets.W3CGRUNTBOT_TOKEN }}
+          GH_TOKEN: ${{ secrets.WAI_TOKEN }}
           OWNER: ${{ github.repository_owner }}
           # reference github.head_ref for pull request
           APG_BRANCH: ${{ github.head_ref }}
