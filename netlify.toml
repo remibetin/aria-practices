@@ -18,7 +18,7 @@ command = """
 """
 
 [build]
-ignore = "cd wai-aria-practices/_external/aria-practices && git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- 'content/' '**/*.js' 'test/' 'scripts/reference-tables.*' '':(exclude)common/' ':(exclude)content/landmarks/examples/', ':(exclude).github/'"
+ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- 'wai-aria-practices/_external/aria-practices/content/' 'wai-aria-practices/_external/aria-practices/**/*.js' 'wai-aria-practices/_external/aria-practices/test/' 'wai-aria-practices/_external/aria-practices/scripts/reference-tables.*' ':(exclude)wai-aria-practices/_external/aria-practices/content/landmarks/examples/'"
 publish = "wai-aria-practices/_site"
 
 [build.environment]
