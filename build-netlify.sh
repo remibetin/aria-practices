@@ -19,7 +19,7 @@ mkdir wai-aria-practices/_external/aria-practices
 
 # Copy aria-practices files
 echo "Copying aria-practices files..."
-rsync -a --exclude node_modules --exclude .git --exclude wai-aria-practices ./ wai-aria-practices/_external/aria-practices/
+rsync -a --exclude node_modules --exclude wai-aria-practices ./ wai-aria-practices/_external/aria-practices/
 
 # Update site files
 echo "Updating site files..."
