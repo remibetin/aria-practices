@@ -26,12 +26,12 @@ rm archive.tar.gz
 # Update site files
 echo "Updating site files..."
 cd wai-aria-practices
-bundle install
 npm install -C scripts/pre-build
 node ./scripts/pre-build
 
 # Build Jekyll site
 echo "Building Jekyll site..."
+bundle install
 bundle update wai-website-theme --conservative
 bundle update wai-website-plugin --conservative
 bundle exec jekyll build --config '_config.yml,_config_staging.yml'
