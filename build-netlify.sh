@@ -23,7 +23,7 @@ mkdir wai-aria-practices/_external/aria-practices
 # Copy aria-practices files
 echo "Copying aria-practices files into the submodule directory..."
 tar --exclude='wai-aria-practices' --exclude='node_modules' --exclude='.git' -cf - . | tar -xf - -C wai-aria-practices/_external/aria-practices
-gi
+
 # Update site files
 echo "Updating site files..."
 cd wai-aria-practices
