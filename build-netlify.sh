@@ -22,7 +22,8 @@ fi
 mkdir _external/aria-practices
 
 # Copy aria-practices files
-tar --exclude='../wai-aria-practices' -cf - . | tar -xf - -C _external/aria-practices
+cd ..
+tar --exclude='wai-aria-practices/' -cf - . | tar -xf - -C wai-aria-practices/_external/aria-practices
 
 # Update site files
 bundle install
