@@ -10,28 +10,28 @@ fi
 echo "Cloning wai-aria-practices repository"
 git clone --depth 1 --branch main https://github.com/w3c/wai-aria-practices wai-aria-practices
 
-cd wai-aria-practices
-
 if [ -d "_external/aria-practices" ]; then
   echo "Removing aria-practices submodule directory..."
-  rm -rf "_external/aria-practices"
+  rm -rf wai-aria-practices/_external/aria-practices
 fi
 
-mkdir _external/aria-practices
+mkdir wai-aria-practices/_external/aria-practices
 
 # Copy aria-practices files
-cd ..
+echo "Copying aria-practices files into the submodule directory..."
 touch archive.tar.gz
-tar --exclude='wai-aria-practices/' --exclude='wai-aria-practices/_external/aria-practices/node_modules/' --exclude='archive.tar.gz' -cf - . | tar -xf - -C wai-aria-practices/_external/aria-practices
+tar --exclude='wai-aria-practices' --exclude='.git' --exclude='archive.tar.gz' -cf - . | tar -xf - -C wai-aria-practices/_external/aria-practices
 rm archive.tar.gz
-cd wai-aria-practices
 
 # Update site files
+echo "Updating site files..."
+cd wai-aria-practices
 bundle install
 npm install -C scripts/pre-build
 node ./scripts/pre-build
 
 # Build Jekyll site
+echo "Building Jekyll site..."
 bundle update wai-website-theme --conservative
 bundle update wai-website-plugin --conservative
 bundle exec jekyll build --config '_config.yml,_config_staging.yml'
