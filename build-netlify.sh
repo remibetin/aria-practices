@@ -9,24 +9,21 @@ fi
 
 echo "Cloning wai-aria-practices repository"
 git clone --depth 1 --branch main https://github.com/w3c/wai-aria-practices wai-aria-practices
-cd wai-aria-practices
 
-echo "Deinitializing aria-practices submodule..."
-git submodule deinit -f "_external/aria-practices" || true
-
-if [ -d "_external/aria-practices" ]; then
+if [ -d "wai-aria-practices/_external/aria-practices" ]; then
   echo "Removing stale aria-practices directory..."
-  rm -rf "_external/aria-practices"
+  rm -rf "wai-aria-practices/_external/aria-practices"
 fi
 
-mkdir _external/aria-practices
+mkdir wai-aria-practices/_external/aria-practices
 
 # Copy aria-practices files
-cd ..
-tar --exclude='wai-aria-practices/' --exclude='node_modules/' --exclude='.git/' -cf - . | tar -xf - -C wai-aria-practices/_external/aria-practices
-cd wai-aria-practices
+touch archive.tar.gz
+tar -czvf archive.tar.gz --exclude='wai-aria-practices' --exclude='node_modules' --exclude='.git' --exclude="archive.tar.gz" . | tar -xzvf archive.tar.gz -C wai-aria-practices/_external/aria-practices
+rm archive.tar.gz
 
 # Update site files
+cd wai-aria-practices
 bundle install
 npm install -C scripts/pre-build
 node ./scripts/pre-build
