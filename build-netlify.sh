@@ -23,7 +23,7 @@ mkdir _external/aria-practices
 
 # Copy aria-practices files
 cd ..
-tar --exclude='wai-aria-practices/' -cf - . | tar -xf - -C wai-aria-practices/_external/aria-practices
+tar --exclude='wai-aria-practices' --exclude='node_modules' --exclude='.git' -cf - . | tar -xf - -C wai-aria-practices/_external/aria-practices
 cd wai-aria-practices
 
 # Update site files
