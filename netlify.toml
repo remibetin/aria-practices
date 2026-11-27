@@ -18,6 +18,7 @@ command = """
 """
 
 [build]
+ignore : "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF 'content/**' '**/*.js' 'test/**' 'scripts/reference-tables.*' '':(exclude)common/**' ':(exclude)content/landmarks/examples/**', ':(exclude).github/**'"
 publish = "wai-aria-practices/_site"
 
 [build.environment]
