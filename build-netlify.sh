@@ -18,15 +18,17 @@ fi
 mkdir wai-aria-practices/_external/aria-practices
 
 # Copy aria-practices files
-rsync -a --exclude node_modules --exclude .git ./ wai-aria-practices/_external/aria-practices/
+echo "Copying aria-practices files..."
+rsync -a --exclude node_modules --exclude .git --exclude wai-aria-practices ./ wai-aria-practices/_external/aria-practices/
 
 # Update site files
+echo "Updating site files..."
 cd wai-aria-practices
-bundle install
 npm install -C scripts/pre-build
 node ./scripts/pre-build
 
 # Build Jekyll site
+bundle install
 bundle update wai-website-theme --conservative
 bundle update wai-website-plugin --conservative
 bundle exec jekyll build --config '_config.yml,_config_staging.yml'
