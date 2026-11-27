@@ -11,16 +11,14 @@ echo "Cloning wai-aria-practices repository"
 git clone --depth 1 --branch main https://github.com/w3c/wai-aria-practices wai-aria-practices
 
 if [ -d "wai-aria-practices/_external/aria-practices" ]; then
-  echo "Removing stale aria-practices directory..."
+  echo "Removing aria-practices directory..."
   rm -rf "wai-aria-practices/_external/aria-practices"
 fi
 
 mkdir wai-aria-practices/_external/aria-practices
 
 # Copy aria-practices files
-touch archive.tar.gz
-tar -czvf archive.tar.gz --exclude='wai-aria-practices' --exclude='node_modules' --exclude='.git' --exclude="archive.tar.gz" . | tar -xzvf archive.tar.gz -C wai-aria-practices/_external/aria-practices
-rm archive.tar.gz
+rsync -a --exclude node_modules --exclude .git ./ wai-aria-practices/_external/aria-practices/
 
 # Update site files
 cd wai-aria-practices
