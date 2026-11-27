@@ -10,7 +10,7 @@ fi
 echo "Cloning wai-aria-practices repository"
 git clone --depth 1 --branch main https://github.com/w3c/wai-aria-practices wai-aria-practices
 
-if [ -d "_external/aria-practices" ]; then
+if [ -d "wai-aria-practices/_external/aria-practices" ]; then
   echo "Removing aria-practices submodule directory..."
   rm -rf wai-aria-practices/_external/aria-practices
 fi
