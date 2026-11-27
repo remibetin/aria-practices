@@ -28,6 +28,7 @@ npm install -C scripts/pre-build
 node ./scripts/pre-build
 
 # Build Jekyll site
+echo "Building Jekyll site..."
 bundle install
 bundle update wai-website-theme --conservative
 bundle update wai-website-plugin --conservative
