@@ -1,23 +1,10 @@
 [context.deploy-preview]
 # Applies to deploy previews, generated from pull requests.
-command = """
-    git clone --depth 1 --branch main https://github.com/w3c/wai-aria-practices wai-aria-practices &&
-    cd wai-aria-practices &&
-    git submodule deinit -f "_external/aria-practices" || true &&
-    rm -rf _external/aria-practices &&
-    mkdir _external/aria-practices &&
-    cd .. &&
-    tar --exclude='./wai-aria-practices' -cf - . | tar -xf - -C wai-aria-practices/_external/aria-practices &&
-    cd wai-aria-practices &&
-    bundle install &&
-    npm install -C scripts/pre-build &&
-    node ./scripts/pre-build &&
-    bundle update wai-website-theme --conservative &&
-    bundle update wai-website-plugin --conservative &&
-    bundle exec jekyll build --config '_config.yml,_config_staging.yml'
-"""
+command = "bash build-netlify.sh"
 
 [build]
+ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- content/ test/ 'scripts/reference-tables.*' ':(exclude)content/landmarks/examples/'"
+
 publish = "wai-aria-practices/_site"
 
 [build.environment]
