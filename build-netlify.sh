@@ -10,9 +10,6 @@ fi
 echo "Cloning wai-aria-practices repository"
 git clone --depth 1 --branch main https://github.com/w3c/wai-aria-practices wai-aria-practices
 
-echo "Deinitializing aria-practices submodule..."
-git submodule deinit -f "wai-aria-practices/_external/aria-practices" || true
-
 if [ -d "wai-aria-practices/_external/aria-practices" ]; then
   echo "Removing aria-practices submodule directory..."
   rm -rf wai-aria-practices/_external/aria-practices
@@ -22,7 +19,7 @@ mkdir wai-aria-practices/_external/aria-practices
 
 # Copy aria-practices files
 echo "Copying aria-practices files into the submodule directory..."
-tar --exclude='wai-aria-practices' --exclude='node_modules' --exclude='.git' -cf - . | tar -xf - -C wai-aria-practices/_external/aria-practices
+tar --exclude='wai-aria-practices/' --exclude='node_modules' --exclude='.git' -cf - . | tar -xf - -C wai-aria-practices/_external/aria-practices
 
 # Update site files
 echo "Updating site files..."
