@@ -22,7 +22,7 @@ mkdir _external/aria-practices
 # Copy aria-practices files
 cd ..
 touch archive.tar.gz
-tar --exclude='wai-aria-practices/' --exclude='node_modules/' --exclude='archive.tar.gz' -cf - . | tar -xf - -C wai-aria-practices/_external/aria-practices
+tar --exclude='wai-aria-practices/' --exclude='wai-aria-practices/_external/aria-practices/node_modules/' --exclude='archive.tar.gz' -cf - . | tar -xf - -C wai-aria-practices/_external/aria-practices
 rm archive.tar.gz
 cd wai-aria-practices
 
